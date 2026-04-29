@@ -613,12 +613,16 @@ function Preview({ list, onBack }: { list: PriceList, onBack: () => void }) {
         </div>
 
         {/* Footer */}
-        <footer className="mt-32 pt-12 border-t border-neutral-100 flex justify-between items-center">
+        <footer className="mt-40 pt-10 border-t border-neutral-100 flex justify-between items-center print:pt-6">
             <div className="flex items-center gap-2 opacity-50">
-               <div className="w-1.5 h-1.5 rounded-full bg-neutral-900" />
-               <p className="text-[9px] font-mono text-neutral-500 uppercase tracking-widest">Dokumen Resmi Penawaran Harga</p>
+               <div className="w-1 h-1 rounded-full bg-neutral-900" />
+               <p className={`text-[10px] uppercase tracking-[0.2em] text-neutral-500 ${activeTheme === 'formal' ? 'font-formal' : 'font-sans'}`}>
+                 Dokumen Penawaran Resmi
+               </p>
             </div>
-            <p className="text-[9px] font-mono text-neutral-400 uppercase tracking-widest">{list.id.slice(0,8).toUpperCase()}</p>
+            <p className={`text-[9px] text-neutral-400 uppercase tracking-widest ${activeTheme === 'formal' ? 'font-formal italic' : 'font-mono'}`}>
+              Ref: {list.id.slice(0,8).toUpperCase()}
+            </p>
         </footer>
       </div>
       
