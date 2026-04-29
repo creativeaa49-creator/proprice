@@ -23,10 +23,10 @@ import { PriceList, PriceListItem, BusinessInfo } from './types';
 const DEFAULT_BUSINESS_INFO: BusinessInfo = {
   name: 'Nama Bisnis Anda',
   email: 'kontak@bisnisanda.com',
-  phone: '+62 812-3456-7890',
-  whatsapp: '+62 812-3456-7890',
+  whatsapp: '+62 ',
   website: 'www.bisnisanda.com',
   address: 'Jl. Sudirman No. 1, Jakarta Pusat, 10110',
+  phone: '',
 };
 
 export default function App() {
@@ -550,7 +550,6 @@ function Preview({ list, onBack }: { list: PriceList, onBack: () => void }) {
                    </p>
                  )}
                  <p className="flex md:flex-row-reverse items-center gap-2 font-mono text-xs tracking-tight">{list.businessInfo.website}</p>
-                 <p className="flex md:flex-row-reverse items-center gap-2">{list.businessInfo.phone}</p>
                </div>
                <div className="pt-4 border-t border-neutral-100">
                  <p className="text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">Tanggal Terbit</p>
