@@ -24,6 +24,7 @@ const DEFAULT_BUSINESS_INFO: BusinessInfo = {
   name: 'Nama Bisnis Anda',
   email: 'kontak@bisnisanda.com',
   phone: '+62 812-3456-7890',
+  whatsapp: '+62 812-3456-7890',
   website: 'www.bisnisanda.com',
   address: 'Jl. Sudirman No. 1, Jakarta Pusat, 10110',
 };
@@ -294,6 +295,16 @@ function Editor({ list, onUpdate, onBack, onPreview }: {
                 />
               </div>
               <div>
+                <label className="text-xs font-semibold text-neutral-900 mb-1 block">WhatsApp</label>
+                <input 
+                  type="text" 
+                  placeholder="+62..."
+                  value={list.businessInfo.whatsapp}
+                  onChange={e => onUpdate({ businessInfo: { ...list.businessInfo, whatsapp: e.target.value } })}
+                  className="w-full bg-white border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-neutral-900 outline-none transition-all"
+                />
+              </div>
+              <div>
                 <label className="text-xs font-semibold text-neutral-900 mb-1 block">Situs Web</label>
                 <input 
                   type="text" 
@@ -533,6 +544,11 @@ function Preview({ list, onBack }: { list: PriceList, onBack: () => void }) {
                <div className="space-y-1">
                  <p className="text-[10px] uppercase font-bold tracking-widest text-neutral-400">Hubungi Kami</p>
                  <p className="flex md:flex-row-reverse items-center gap-2">{list.businessInfo.email}</p>
+                 {list.businessInfo.whatsapp && (
+                   <p className="flex md:flex-row-reverse items-center gap-2 text-sm">
+                     <span className="font-bold text-green-600">WA:</span> {list.businessInfo.whatsapp}
+                   </p>
+                 )}
                  <p className="flex md:flex-row-reverse items-center gap-2 font-mono text-xs tracking-tight">{list.businessInfo.website}</p>
                  <p className="flex md:flex-row-reverse items-center gap-2">{list.businessInfo.phone}</p>
                </div>

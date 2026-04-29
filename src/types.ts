@@ -12,6 +12,7 @@ export interface BusinessInfo {
   name: string;
   email: string;
   phone: string;
+  whatsapp?: string;
   website: string;
   address: string;
   logoUrl?: string;
