@@ -456,12 +456,12 @@ function Editor({ list, onUpdate, onBack, onPreview }: {
 }
 
 function Preview({ list, onBack }: { list: PriceList, onBack: () => void }) {
-  const [activeTheme, setActiveTheme] = useState<'modern' | 'minimal' | 'editorial'>('modern');
+  const [activeTheme, setActiveTheme] = useState<'modern' | 'minimal' | 'formal'>('formal');
 
   const themes = {
     modern: 'font-sans',
     minimal: 'font-sans bg-white',
-    editorial: 'font-serif bg-neutral-50'
+    formal: 'font-formal bg-white'
   };
 
   const handlePrint = () => {
@@ -481,7 +481,7 @@ function Preview({ list, onBack }: { list: PriceList, onBack: () => void }) {
           </button>
           <div className="h-6 w-[1px] bg-neutral-200 mx-2 hidden sm:block"></div>
           <div className="flex p-1 bg-neutral-100 rounded-full">
-            {(['modern', 'minimal', 'editorial'] as const).map(t => (
+            {(['modern', 'minimal', 'formal'] as const).map(t => (
                <button 
                 key={t}
                 onClick={() => setActiveTheme(t)}
@@ -517,12 +517,12 @@ function Preview({ list, onBack }: { list: PriceList, onBack: () => void }) {
                 {list.businessInfo.name[0]}
               </div>
               <div>
-                <h2 className="text-xl font-serif mb-0 tracking-tight leading-none">{list.businessInfo.name}</h2>
+                <h2 className={`text-xl mb-0 tracking-tight leading-none ${activeTheme === 'formal' ? 'font-formal' : 'font-serif'}`}>{list.businessInfo.name}</h2>
                 <p className="text-[9px] tracking-[0.3em] uppercase font-bold text-neutral-400 mt-1">Official Price Index</p>
               </div>
             </div>
             
-            <h1 className="text-7xl font-serif font-medium tracking-tighter mb-6 leading-[0.85] text-neutral-900">
+            <h1 className={`text-7xl font-medium tracking-tighter mb-6 leading-[0.85] text-neutral-900 ${activeTheme === 'formal' ? 'font-formal' : 'font-serif'}`}>
               {list.title}
             </h1>
             <p className="text-neutral-500 max-w-sm text-lg leading-relaxed font-light">{list.description}</p>
@@ -560,7 +560,7 @@ function Preview({ list, onBack }: { list: PriceList, onBack: () => void }) {
                 {items.map((item) => (
                   <div key={item.id} className="grid grid-cols-[1fr_auto] items-start gap-12 py-4 group hover:bg-neutral-50 transition-colors px-6 -mx-6 rounded-2xl">
                     <div className="space-y-1">
-                      <h4 className="text-2xl font-serif font-medium text-neutral-900 tracking-tight">{item.name}</h4>
+                      <h4 className={`text-2xl font-medium text-neutral-900 tracking-tight ${activeTheme === 'formal' ? 'font-formal' : 'font-serif'}`}>{item.name}</h4>
                       <p className="text-neutral-500 text-base max-w-xl leading-relaxed font-light">{item.description}</p>
                       
                       {item.features && item.features.length > 0 && (
@@ -607,7 +607,7 @@ function Preview({ list, onBack }: { list: PriceList, onBack: () => void }) {
                 <div className="h-24 w-48 border-b border-neutral-300 flex items-center justify-center italic text-neutral-300 text-sm">
                    Tanda Tangan Digital
                 </div>
-                <p className="text-neutral-900 font-serif font-medium text-lg mt-4">{list.businessInfo.name}</p>
+                <p className={`text-neutral-900 font-medium text-lg mt-4 ${activeTheme === 'formal' ? 'font-formal' : 'font-serif'}`}>{list.businessInfo.name}</p>
               </div>
            </div>
         </div>
@@ -616,9 +616,9 @@ function Preview({ list, onBack }: { list: PriceList, onBack: () => void }) {
         <footer className="mt-32 pt-12 border-t border-neutral-100 flex justify-between items-center">
             <div className="flex items-center gap-2 opacity-50">
                <div className="w-1.5 h-1.5 rounded-full bg-neutral-900" />
-               <p className="text-[9px] font-mono text-neutral-500 uppercase tracking-widest">Dokumen Resmi ProPrice</p>
+               <p className="text-[9px] font-mono text-neutral-500 uppercase tracking-widest">Dokumen Resmi Penawaran Harga</p>
             </div>
-            <p className="text-[9px] font-mono text-neutral-400 uppercase tracking-widest">{list.id.slice(0,8)} • BUILD ID: AIS-ASIA</p>
+            <p className="text-[9px] font-mono text-neutral-400 uppercase tracking-widest">{list.id.slice(0,8).toUpperCase()}</p>
         </footer>
       </div>
       
